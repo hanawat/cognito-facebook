@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,47 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvY-yq-ArC" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="200" y="420" width="200" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6Uk-59-0UM"/>
+                                    <constraint firstAttribute="height" constant="50" id="env-Us-rxb"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9YI-Gh-o7N">
+                                <rect key="frame" x="234" y="135" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="0Ea-gF-y0b"/>
+                                    <constraint firstAttribute="height" constant="200" id="hZ5-N3-rxk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9YI-Gh-o7N" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0gv-zf-qqs"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="9YI-Gh-o7N" secondAttribute="centerX" id="1EA-w4-PKO"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7p1-Rv-mf6"/>
+                            <constraint firstItem="9YI-Gh-o7N" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lpx-6r-M6I"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t81-Qo-RgZ"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="top" secondItem="9YI-Gh-o7N" secondAttribute="bottom" constant="20" id="vrz-V1-tyr"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7p1-Rv-mf6"/>
+                                <exclude reference="t81-Qo-RgZ"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="AvY-yq-ArC" id="6nJ-YF-fge"/>
+                        <outlet property="loginImageView" destination="9YI-Gh-o7N" id="h8Y-od-Qif"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="218" y="328"/>
         </scene>
     </scenes>
 </document>
