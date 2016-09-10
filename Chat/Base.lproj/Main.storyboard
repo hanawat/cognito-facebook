@@ -1,46 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="QXL-1u-rmA">
+            <objects>
+                <viewController id="YJM-wB-NDm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FE2-3Y-eIK"/>
+                        <viewControllerLayoutGuide type="bottom" id="TMq-Q8-tXh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1RE-rE-YWN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nnb-xM-E9h">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatRoomCell" id="uNb-HB-tBk">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uNb-HB-tBk" id="QFq-AE-fbD">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nnb-xM-E9h" firstAttribute="leading" secondItem="1RE-rE-YWN" secondAttribute="leading" id="HM9-nl-ILf"/>
+                            <constraint firstItem="Nnb-xM-E9h" firstAttribute="top" secondItem="FE2-3Y-eIK" secondAttribute="bottom" id="QzA-gf-PgB"/>
+                            <constraint firstItem="TMq-Q8-tXh" firstAttribute="top" secondItem="Nnb-xM-E9h" secondAttribute="bottom" id="S8h-u1-SNF"/>
+                            <constraint firstAttribute="trailing" secondItem="Nnb-xM-E9h" secondAttribute="trailing" id="Xxp-aj-HKq"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDT-ah-sUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-557" y="369"/>
+        </scene>
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvY-yq-ArC" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="200" y="420" width="200" height="50"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="6Uk-59-0UM"/>
                                     <constraint firstAttribute="height" constant="50" id="env-Us-rxb"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9YI-Gh-o7N">
-                                <rect key="frame" x="234" y="135" width="200" height="200"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tR5-4T-lyi" customClass="FBSDKProfilePictureView">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="0Ea-gF-y0b"/>
-                                    <constraint firstAttribute="height" constant="200" id="hZ5-N3-rxk"/>
+                                    <constraint firstAttribute="width" secondItem="tR5-4T-lyi" secondAttribute="height" multiplier="1:1" id="7q8-sV-fh0"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9YI-Gh-o7N" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0gv-zf-qqs"/>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="9YI-Gh-o7N" secondAttribute="centerX" id="1EA-w4-PKO"/>
                             <constraint firstItem="AvY-yq-ArC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7p1-Rv-mf6"/>
-                            <constraint firstItem="9YI-Gh-o7N" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lpx-6r-M6I"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="top" secondItem="tR5-4T-lyi" secondAttribute="bottom" constant="30" id="HRZ-e6-Tca"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="tR5-4T-lyi" secondAttribute="centerX" id="Lu3-ce-elB"/>
+                            <constraint firstItem="tR5-4T-lyi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="dzE-Lz-3zY"/>
+                            <constraint firstItem="tR5-4T-lyi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oxF-ff-Qd2"/>
                             <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t81-Qo-RgZ"/>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="top" secondItem="9YI-Gh-o7N" secondAttribute="bottom" constant="20" id="vrz-V1-tyr"/>
+                            <constraint firstItem="AvY-yq-ArC" firstAttribute="width" secondItem="tR5-4T-lyi" secondAttribute="width" id="zUt-Gb-MKF"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -50,13 +90,12 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="AvY-yq-ArC" id="6nJ-YF-fge"/>
-                        <outlet property="loginImageView" destination="9YI-Gh-o7N" id="h8Y-od-Qif"/>
+                        <outlet property="loginButton" destination="AvY-yq-ArC" id="mLy-zz-s8d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218" y="328"/>
+            <point key="canvasLocation" x="216.80000000000001" y="327.88605697151428"/>
         </scene>
     </scenes>
 </document>

@@ -33,13 +33,21 @@
 	<string>1781018558852095</string>
 	<key>FacebookDisplayName</key>
 	<string>AWSChat</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbauth2</string>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbshareextension</string>
+    </array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>graph.facebook.com</key>
+            <string></string>
+        </dict>
+    </dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
