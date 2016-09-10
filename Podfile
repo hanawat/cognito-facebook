@@ -8,6 +8,8 @@ target 'Chat' do
   # Pods for Chat
   pod 'FBSDKLoginKit'
   pod 'AWSCognito'
+  pod 'AWSSNS'
+  pod 'AWSDynamoDB'
 
 end
 

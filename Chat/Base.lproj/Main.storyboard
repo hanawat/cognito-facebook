@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KOz-ji-LbK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Chat Room-->
         <scene sceneID="QXL-1u-rmA">
             <objects>
-                <viewController id="YJM-wB-NDm" sceneMemberID="viewController">
+                <viewController id="YJM-wB-NDm" customClass="ChatRoomViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FE2-3Y-eIK"/>
                         <viewControllerLayoutGuide type="bottom" id="TMq-Q8-tXh"/>
@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatRoomCell" id="uNb-HB-tBk">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uNb-HB-tBk" id="QFq-AE-fbD">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -31,6 +31,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="YJM-wB-NDm" id="veb-OZ-j3M"/>
+                                    <outlet property="delegate" destination="YJM-wB-NDm" id="LXN-XZ-Uiq"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,12 +45,16 @@
                             <constraint firstAttribute="trailing" secondItem="Nnb-xM-E9h" secondAttribute="trailing" id="Xxp-aj-HKq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Chat Room" id="2b8-66-FO1"/>
+                    <connections>
+                        <outlet property="tableView" destination="Nnb-xM-E9h" id="nzh-Dh-SbU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDT-ah-sUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-557" y="369"/>
+            <point key="canvasLocation" x="1506" y="328"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,44 +66,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvY-yq-ArC" customClass="FBSDKLoginButton">
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NIQ-8N-X99">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tR5-4T-lyi" customClass="FBSDKProfilePictureView">
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="tR5-4T-lyi" secondAttribute="height" multiplier="1:1" id="7q8-sV-fh0"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvY-yq-ArC" customClass="FBSDKLoginButton">
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="6Uk-59-0UM"/>
+                                            <constraint firstAttribute="height" constant="50" id="env-Us-rxb"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="6Uk-59-0UM"/>
-                                    <constraint firstAttribute="height" constant="50" id="env-Us-rxb"/>
+                                    <constraint firstItem="AvY-yq-ArC" firstAttribute="width" secondItem="tR5-4T-lyi" secondAttribute="width" id="Khf-E9-ErF"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tR5-4T-lyi" customClass="FBSDKProfilePictureView">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="tR5-4T-lyi" secondAttribute="height" multiplier="1:1" id="7q8-sV-fh0"/>
-                                </constraints>
-                            </view>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Srk-vN-I26">
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <state key="normal" title="Chat Room"/>
+                                <connections>
+                                    <segue destination="YJM-wB-NDm" kind="show" id="M1P-Ap-XJc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7p1-Rv-mf6"/>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="top" secondItem="tR5-4T-lyi" secondAttribute="bottom" constant="30" id="HRZ-e6-Tca"/>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="tR5-4T-lyi" secondAttribute="centerX" id="Lu3-ce-elB"/>
-                            <constraint firstItem="tR5-4T-lyi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="dzE-Lz-3zY"/>
-                            <constraint firstItem="tR5-4T-lyi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oxF-ff-Qd2"/>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t81-Qo-RgZ"/>
-                            <constraint firstItem="AvY-yq-ArC" firstAttribute="width" secondItem="tR5-4T-lyi" secondAttribute="width" id="zUt-Gb-MKF"/>
+                            <constraint firstItem="Srk-vN-I26" firstAttribute="centerX" secondItem="NIQ-8N-X99" secondAttribute="centerX" id="3WN-7i-1KN"/>
+                            <constraint firstItem="Srk-vN-I26" firstAttribute="top" secondItem="NIQ-8N-X99" secondAttribute="bottom" constant="30" id="EWS-XC-l8j"/>
+                            <constraint firstItem="NIQ-8N-X99" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kYy-5i-SVE"/>
+                            <constraint firstItem="NIQ-8N-X99" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="q3O-i4-mtL"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="7p1-Rv-mf6"/>
-                                <exclude reference="t81-Qo-RgZ"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Login" id="hxi-8i-5Tx"/>
                     <connections>
+                        <outlet property="chatRoomButton" destination="Srk-vN-I26" id="tsu-pP-42E"/>
                         <outlet property="loginButton" destination="AvY-yq-ArC" id="mLy-zz-s8d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="216.80000000000001" y="327.88605697151428"/>
+            <point key="canvasLocation" x="657" y="328"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qzQ-kI-TGn">
+            <objects>
+                <navigationController id="KOz-ji-LbK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VqG-Tv-MtY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="aRd-Z5-vTn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9uM-Xg-6bL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-198" y="328"/>
         </scene>
     </scenes>
 </document>
