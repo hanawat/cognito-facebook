@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C74581D1DD8731B00CEECE5 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C74581C1DD8731B00CEECE5 /* ChatUser.swift */; };
+		3C74581F1DD87E9E00CEECE5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C74581E1DD87E9E00CEECE5 /* LoginService.swift */; };
 		3CD7583A1D7492BA005DCB28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD758391D7492BA005DCB28 /* AppDelegate.swift */; };
 		3CD7583C1D7492BA005DCB28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD7583B1D7492BA005DCB28 /* LoginViewController.swift */; };
 		3CD7583F1D7492BA005DCB28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD7583D1D7492BA005DCB28 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		3C74581C1DD8731B00CEECE5 /* ChatUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		3C74581E1DD87E9E00CEECE5 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		3CD758361D7492BA005DCB28 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD758391D7492BA005DCB28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CD7583B1D7492BA005DCB28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				3CEE8C6A1D84976300767DA2 /* Chat.entitlements */,
 				3CD758391D7492BA005DCB28 /* AppDelegate.swift */,
 				3CD7583B1D7492BA005DCB28 /* LoginViewController.swift */,
+				3C74581E1DD87E9E00CEECE5 /* LoginService.swift */,
 				3C74581C1DD8731B00CEECE5 /* ChatUser.swift */,
 				3CEE8C6B1D8499D500767DA2 /* ChatRoomViewController.swift */,
 				3CD7583D1D7492BA005DCB28 /* Main.storyboard */,
@@ -234,6 +237,7 @@
 			files = (
 				3C74581D1DD8731B00CEECE5 /* ChatUser.swift in Sources */,
 				3CD7583C1D7492BA005DCB28 /* LoginViewController.swift in Sources */,
+				3C74581F1DD87E9E00CEECE5 /* LoginService.swift in Sources */,
 				3CD7583A1D7492BA005DCB28 /* AppDelegate.swift in Sources */,
 				3CEE8C6C1D8499D500767DA2 /* ChatRoomViewController.swift in Sources */,
 			);
