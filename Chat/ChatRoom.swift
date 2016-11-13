@@ -1,5 +1,5 @@
 //
-//  ChatUser.swift
+//  ChatRoom.swift
 //  Chat
 //
 //  Created by Hanawa Takuro on 2016/11/13.
@@ -9,18 +9,21 @@
 import Foundation
 import AWSDynamoDB
 
-class ChatUser: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
+class ChatRoom: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
 
+    var roomId: String = ""
+    var roomName: String = ""
     var userId: String = ""
-    var userName: String = ""
-    var userImageUrl: String = ""
-    var endpoint: String = ""
 
     static func dynamoDBTableName() -> String {
-        return "ChatUsers"
+        return "ChatRooms"
     }
 
     static func hashKeyAttribute() -> String {
+        return "roomId"
+    }
+
+    static func rangeKeyAttribute() -> String {
         return "userId"
     }
 }

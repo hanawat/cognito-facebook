@@ -17,7 +17,7 @@ class LoginService {
 
     typealias CreateChatUser = (_ user: ChatUser?, _ error: Error?) -> Void
 
-    class func login(deviceToken: String, completion: @escaping (_ loggedin: Bool) -> Void) {
+    class func login(deviceToken: String, completion: @escaping (_ loggedinUser: ChatUser?) -> Void) {
 
         // Initialize the Amazon Cognito credentials provider
         guard let poolId = ChatKeys().cognitoIdentityPoolId() else { return }
@@ -41,21 +41,21 @@ class LoginService {
             }).continue(with: .mainThread(), with: { task -> Any? in
                 if let error = task.error {
                     print(error.localizedDescription)
-                    completion(false)
+                    completion(nil)
                     return nil
                 }
 
                 guard let id = credentialsProvider.identityId, let endpoint = task.result?.endpointArn! else {
-                    completion(false)
+                    completion(nil)
                     return nil
                 }
 
                 self.createUser(id: id, endpoint: endpoint, completion: { user, error in
                     if error == nil, let model = user {
                         AWSDynamoDBObjectMapper.default().save(model)
-                        completion(true)
+                        completion(model)
                     } else {
-                        completion(false)
+                        completion(nil)
                         return
                     }
                 })
@@ -78,9 +78,9 @@ class LoginService {
             }
 
             let user = ChatUser()
-            user?.id = id
-            user?.name = name
-            user?.imageUrl = imageUrl.absoluteString
+            user?.userId = id
+            user?.userName = name
+            user?.userImageUrl = imageUrl.absoluteString
             user?.endpoint = endpoint
             completion(user, nil)
         }

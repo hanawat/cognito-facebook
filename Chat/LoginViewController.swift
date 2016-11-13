@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var chatRoomButton: UIButton!
 
     var deviceToken: String?
+    var chatUser: ChatUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,21 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let chatRoomViewController = segue.destination as? ChatRoomViewController,
+            let chatUser = self.chatUser else { return }
+
+        chatRoomViewController.chatUser = chatUser
+    }
+
     func updateDeviceToken(_ notification: Notification?) {
         guard let deviceToken = notification?.userInfo?["deviceToken"] as? String else { return }
         self.deviceToken = deviceToken
 
         guard let _ = FBSDKAccessToken.current() else { return }
-        LoginService.login(deviceToken: deviceToken, completion: { loggedin in
-            self.chatRoomButton.isEnabled = loggedin
+        LoginService.login(deviceToken: deviceToken, completion: { loggedinUser in
+            self.chatRoomButton.isEnabled = (loggedinUser != nil) ? true : false
+            self.chatUser = loggedinUser
         })
     }
 }
@@ -52,8 +61,9 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         guard error == nil, result.isCancelled == false,
             let deviceToken = self.deviceToken else { return }
 
-        LoginService.login(deviceToken: deviceToken, completion: { loggedin in
-            self.chatRoomButton.isEnabled = loggedin
+        LoginService.login(deviceToken: deviceToken, completion: { loggedinUser in
+            self.chatRoomButton.isEnabled = (loggedinUser != nil) ? true : false
+            self.chatUser = loggedinUser
         })
     }
 
