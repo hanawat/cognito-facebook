@@ -47,9 +47,15 @@ class LoginViewController: UIViewController {
         self.deviceToken = deviceToken
 
         guard let _ = FBSDKAccessToken.current() else { return }
-        LoginService.login(deviceToken: deviceToken, completion: { loggedinUser in
-            self.chatRoomButton.isEnabled = (loggedinUser != nil) ? true : false
-            self.chatUser = loggedinUser
+        LoginService.login(deviceToken: deviceToken, completion: { result in
+
+            switch result {
+            case .success(let user):
+                self.chatRoomButton.isEnabled = true
+                self.chatUser = user
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         })
     }
 }
@@ -61,13 +67,22 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         guard error == nil, result.isCancelled == false,
             let deviceToken = self.deviceToken else { return }
 
-        LoginService.login(deviceToken: deviceToken, completion: { loggedinUser in
-            self.chatRoomButton.isEnabled = (loggedinUser != nil) ? true : false
-            self.chatUser = loggedinUser
+        LoginService.login(deviceToken: deviceToken, completion: { result in
+
+            switch result {
+            case .success(let user):
+                self.chatRoomButton.isEnabled = true
+                self.chatUser = user
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         })
     }
 
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        chatRoomButton.isEnabled = false
+
+        DispatchQueue.main.async {
+            self.chatRoomButton.isEnabled = false
+        }
     }
 }

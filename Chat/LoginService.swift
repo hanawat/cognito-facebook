@@ -15,9 +15,9 @@ import Keys
 
 class LoginService {
 
-    typealias CreateChatUser = (_ user: ChatUser?, _ error: Error?) -> Void
+    typealias CreateChatUserResult = (Result<ChatUser, NSError>) -> Void
 
-    class func login(deviceToken: String, completion: @escaping (_ loggedinUser: ChatUser?) -> Void) {
+    class func login(deviceToken: String, completion: @escaping CreateChatUserResult) {
 
         // Initialize the Amazon Cognito credentials provider
         guard let poolId = ChatKeys().cognitoIdentityPoolId() else { return }
@@ -41,22 +41,23 @@ class LoginService {
             }).continue(with: .mainThread(), with: { task -> Any? in
                 if let error = task.error {
                     print(error.localizedDescription)
-                    completion(nil)
+                    completion(.failure(error as NSError))
                     return nil
                 }
 
                 guard let id = credentialsProvider.identityId, let endpoint = task.result?.endpointArn! else {
-                    completion(nil)
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))
                     return nil
                 }
 
-                self.createUser(id: id, endpoint: endpoint, completion: { user, error in
-                    if error == nil, let model = user {
-                        AWSDynamoDBObjectMapper.default().save(model)
-                        completion(model)
-                    } else {
-                        completion(nil)
-                        return
+                self.createUser(id: id, endpoint: endpoint, completion: { result in
+
+                    switch result {
+                    case .success(let value):
+                        AWSDynamoDBObjectMapper.default().save(value)
+                        completion(result)
+                    case .failure:
+                        completion(result)
                     }
                 })
 
@@ -64,25 +65,25 @@ class LoginService {
             })
     }
 
-    fileprivate class func createUser(id: String, endpoint: String, completion: @escaping CreateChatUser)  {
+    fileprivate class func createUser(id: String, endpoint: String, completion: @escaping CreateChatUserResult)  {
 
         FBSDKProfile.loadCurrentProfile { (profile, error) in
-            guard error == nil else {
-                print(error?.localizedDescription ?? "Unknown Error")
-                completion(nil, error); return
-            }
+
+            if let nserror = error as? NSError {
+                completion(.failure(nserror)); return
+            } else if error != nil { fatalError() }
 
             guard let name = profile?.name,
                 let imageUrl = profile?.imageURL(for: FBSDKProfilePictureMode.square, size: CGSize(width: 50, height: 50)) else {
-                    completion(nil, NSError(domain: "", code: -1, userInfo: nil)); return
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: nil))); return
             }
 
-            let user = ChatUser()
-            user?.userId = id
-            user?.userName = name
-            user?.userImageUrl = imageUrl.absoluteString
-            user?.endpoint = endpoint
-            completion(user, nil)
+            guard let user = ChatUser() else { fatalError() }
+            user.userId = id
+            user.userName = name
+            user.userImageUrl = imageUrl.absoluteString
+            user.endpoint = endpoint
+            completion(Result.success(user))
         }
     }
 }
