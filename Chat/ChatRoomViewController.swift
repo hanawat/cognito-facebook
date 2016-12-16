@@ -27,6 +27,15 @@ class ChatRoomViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier , identifier == "EnterChatRoom",
+            let destination = segue.destination as? ChatMessageViewController,
+            let selectedRow = tableView.indexPathForSelectedRow?.row else { fatalError() }
+
+        destination.user = chatUser
+        destination.room = chatRooms[selectedRow]
+    }
+
     @IBAction func createChatRoom(_ sender: UIBarButtonItem) {
         let alert = createRoomAlert()
         present(alert, animated: true, completion: nil)
@@ -61,12 +70,8 @@ class ChatRoomViewController: UIViewController {
             if let textFields =  alert.textFields , textFields.count == textFieldNames.count {
                 guard let roomId = textFields[0].text, let roomName = textFields[1].text else { fatalError() }
 
-                guard let room = ChatRoom() else { fatalError() }
-                room.roomId = roomId
-                room.roomName = roomName
-                room.userId = self.chatUser.userId
+                self.roomsService.saveChatRoom(id: roomId, name: roomName, user: self.chatUser, completion: { result in
 
-                self.roomsService.saveChatRoom(room, completion: { result in
                     switch result {
                     case .success:
                         self.reloadRooms()
@@ -96,8 +101,4 @@ extension ChatRoomViewController: UITableViewDataSource {
 
         return cell
     }
-}
-
-extension ChatRoomViewController: UITableViewDelegate {
-
 }

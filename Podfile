@@ -10,6 +10,7 @@ target 'Chat' do
   pod 'AWSCognito'
   pod 'AWSSNS'
   pod 'AWSDynamoDB'
+  pod 'JSQMessagesViewController'
 
 end
 

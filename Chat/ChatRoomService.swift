@@ -13,12 +13,17 @@ class ChatRoomService {
 
     fileprivate lazy var dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
 
-    func saveChatRoom(_ room: ChatRoom, completion: ((Result<ChatRoom, NSError>) -> Void)?) {
+    func saveChatRoom(id: String, name: String, user: ChatUser, completion: ((Result<ChatRoom, NSError>) -> Void)?) {
+
+        guard let room = ChatRoom() else { fatalError() }
+        room.roomId = id
+        room.roomName = name
+        room.userId = user.userId
 
         dynamoDBObjectMapper.save(room)
             .continue(with: AWSExecutor.mainThread(), with: { task -> AnyObject! in
-                if let error = task.error {
-                    completion?(.failure(error as NSError))
+                if let error = task.error as? NSError {
+                    completion?(.failure(error))
                     return nil
                 }
 
@@ -35,13 +40,12 @@ class ChatRoomService {
         query.expressionAttributeValues = [":val" : user.userId]
         dynamoDBObjectMapper.query(ChatRoom.self, expression: query)
             .continue(with: AWSExecutor.mainThread(), with: { task -> AnyObject! in
-                if let error = task.error {
-                    completion?(.failure(error as NSError))
+                if let error = task.error as? NSError {
+                    completion?(.failure(error))
                     return nil
                 }
 
                 guard let rooms = task.result?.items as? [ChatRoom] else { fatalError() }
-
                 completion?(.success(rooms))
                 return nil
             })
@@ -49,7 +53,7 @@ class ChatRoomService {
 
     func deleteChatRoom(with room: ChatRoom, completion: ((Error?) -> Void)?) {
         dynamoDBObjectMapper.remove(room)
-            .continue(with: AWSExecutor.mainThread(), with: { (task) -> AnyObject! in
+            .continue(with: AWSExecutor.mainThread(), with: { task -> AnyObject! in
                 completion?(task.error)
                 return nil
             })

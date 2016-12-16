@@ -23,16 +23,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nnb-xM-E9h">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatRoomCell" id="uNb-HB-tBk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatRoomCell" id="uNb-HB-tBk">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uNb-HB-tBk" id="QFq-AE-fbD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="kLH-MC-Q98" kind="show" identifier="EnterChatRoom" id="0WB-hm-E1o"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -44,9 +47,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Nnb-xM-E9h" firstAttribute="leading" secondItem="1RE-rE-YWN" secondAttribute="leading" id="HM9-nl-ILf"/>
-                            <constraint firstItem="Nnb-xM-E9h" firstAttribute="top" secondItem="FE2-3Y-eIK" secondAttribute="bottom" id="QzA-gf-PgB"/>
                             <constraint firstItem="TMq-Q8-tXh" firstAttribute="top" secondItem="Nnb-xM-E9h" secondAttribute="bottom" id="S8h-u1-SNF"/>
                             <constraint firstAttribute="trailing" secondItem="Nnb-xM-E9h" secondAttribute="trailing" id="Xxp-aj-HKq"/>
+                            <constraint firstItem="Nnb-xM-E9h" firstAttribute="top" secondItem="1RE-rE-YWN" secondAttribute="top" id="ZhM-sk-ScH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chat Room" id="2b8-66-FO1">
@@ -62,7 +65,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDT-ah-sUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="328"/>
+            <point key="canvasLocation" x="1504.8" y="327.88605697151428"/>
+        </scene>
+        <!--Chat Message View Controller-->
+        <scene sceneID="Nks-oH-iYv">
+            <objects>
+                <viewController id="kLH-MC-Q98" customClass="ChatMessageViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v8E-SW-QIN"/>
+                        <viewControllerLayoutGuide type="bottom" id="AE4-C7-Rbr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ys5-3L-egw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="c8t-hi-Epb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C76-7f-8Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2303" y="328"/>
         </scene>
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
